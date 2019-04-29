@@ -26,6 +26,7 @@ public class MyRealm1 extends AuthenticatingRealm {
         return token instanceof UsernamePasswordToken; //仅支持UsernamePasswordToken类型的Token
     }
 
+    //重写doGetAuthenticationInfo(token)从特定数据源得到相应帐户数据。
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
@@ -33,7 +34,10 @@ public class MyRealm1 extends AuthenticatingRealm {
     }
 
 
-/*    public final AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+
+/*
+  AuthorizingRealm抽象类中的getAuthenticationInfo(token) 方法是一个final方法，它为以认证过程提供固定模板
+  public final AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         AuthenticationInfo info = getCachedAuthenticationInfo(token);
         if (info == null) {
